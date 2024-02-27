@@ -1,0 +1,19 @@
+curl -X POST "http://127.0.0.1:8000/timeline" \
+     -H "Content-Type: application/json" \
+     -d '{
+      "coordinateSystem": "geo",
+      "startDate": "2020-01-01",
+      "endDate": "2025-01-01",
+      "intervalMinutes": 60,
+      "points": ["mercury"],
+      "nodeCalc": "mean",
+      "aspects": 
+      [
+          {
+              "angle": 360,
+              "family": true,
+              "orb": 0.1,
+              "targets": ["sun"]
+          }
+      ]
+    }'

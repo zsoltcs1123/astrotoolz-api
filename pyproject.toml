@@ -2,11 +2,18 @@
 name = "astrotoolz-api"
 version = "0.1.0"
 description = ""
-authors = ["cszscc <zsolt.csikos@codecool.com>"]
+authors = ["zsoltcs <cszs1123@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
+fastapi = "^0.109.2"
+uvicorn = "^0.27.0.post1"
+pyyaml = "^6.0.1"
+colorlog = "^6.8.2"
+astrotoolz = "^0.1.3"
+pyhumps = "^3.8.0"
+
 
 
 [build-system]
