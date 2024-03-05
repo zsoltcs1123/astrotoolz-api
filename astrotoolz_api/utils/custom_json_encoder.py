@@ -1,4 +1,4 @@
-import enum
+import enum  # Import the enum module at the top of your file
 import json
 import logging
 from datetime import date, datetime
@@ -10,19 +10,36 @@ from types import (
     WrapperDescriptorType,
 )
 
-from astrotoolz.core.positions.geo_position import GeoPosition
+from astrotoolz.core.positions.base_position import BasePosition
 from astrotoolz.core.zodiac.division import Division
+from astrotoolz.core.zodiac.mapped_position import MappedPosition
 from astrotoolz.core.zodiac.tropical_attributes import TropicalAttributes
 from astrotoolz.core.zodiac.vedic_attributes import VedicAttributes
-from astrotoolz.tools.timeline.timeline import Timeline
+from astrotoolz.horoscope.horoscope import Horoscope
+from astrotoolz.timeline.timeline import Timeline
 
-# Setup basic configuration for logging
 logging.basicConfig(level=logging.DEBUG)
 
 
 class CustomJSONEncoder(json.JSONEncoder):
     def default(self, obj):
-        logging.debug(f"Trying to serialize an object of type: {type(obj)}")
+        # logging.debug(f"Trying to serialize an object of type: {type(obj)}")
+
+        if isinstance(obj, Horoscope):
+            return {
+                "name": obj.config.name,
+                "lat": obj.config.lat,
+                "lon": obj.config.lon,
+                "coordinateSystem": obj.coord_system,
+                "zodiac": obj.config.zodiac,
+                "nodeCalc": obj.node_calc,
+                "houseSystem": obj.config.house_system,
+                "positions": obj.mgps,
+                "angles": obj.angles,
+                "aspects": obj.aspects,
+                "cusps": obj.cusps,
+                "indices": obj.indices,
+            }
 
         if isinstance(obj, Timeline):
             return {"events": obj.events}
@@ -30,8 +47,27 @@ class CustomJSONEncoder(json.JSONEncoder):
         if isinstance(obj, Division):
             return {"name": obj.name}
 
-        if isinstance(obj, GeoPosition):
+        if isinstance(obj, MappedPosition):
+            dic = {
+                "point": obj.point,
+                "lon": obj.lon.decimal,
+                "lat": obj.lat.decimal,
+                "speed": obj.speed.decimal,
+                "ra": obj.ra.decimal if obj.ra is not None else None,
+                "dec": obj.dec.decimal if obj.dec is not None else None,
+            }
+
+            if obj.vedic:
+                dic["vedic"] = obj.vedic
+
+            if obj.tropical:
+                dic["tropical"] = obj.tropical
+
+            return dic
+
+        if isinstance(obj, BasePosition):
             return {
+                "point": obj.point,
                 "lon": obj.lon.decimal,
                 "lat": obj.lat.decimal,
                 "speed": obj.speed.decimal,

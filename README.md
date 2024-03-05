@@ -1,0 +1,1 @@
+poetry add astrotoolz@file:///C:/Users/Zsolt/data/dev/astrotoolz/#astrotoolz[all]
