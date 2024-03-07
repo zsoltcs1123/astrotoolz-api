@@ -17,3 +17,23 @@ curl -X POST "http://127.0.0.1:8000/horoscope" \
       "zodiac": "tropical",
       "node_calc": "mean"
     }'
+
+###
+
+curl -X POST "http://localhost:8002/horoscope" \
+     -H "Content-Type: application/json" \
+     -d '{
+      "name": "Zsolt",
+      "date": "1992-07-21T01:20:00",
+      "coordinate_system": "geo",
+      "points": ["sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto", "north node", "south node"],
+      "aspects": 
+      [
+          {
+              "angle": 30,
+              "family": true
+          }
+      ],
+      "zodiac": "tropical",
+      "node_calc": "mean"
+    }'

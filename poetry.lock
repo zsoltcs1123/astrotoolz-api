@@ -51,8 +51,10 @@ swisseph = "0.0.0.dev1"
 timezonefinder = "6.2.0"
 
 [package.source]
-type = "directory"
-url = "../astrotoolz"
+type = "git"
+url = "https://github.com/zsoltcs1123/astrotools-python.git"
+reference = "HEAD"
+resolved_reference = "ca2bac47b663b49ac29aff7f20bcb0d19ec18eea"
 
 [[package]]
 name = "certifi"
@@ -952,4 +954,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "7de6202a0fb16cd5dead8be6b45845d9eb703052bb613f0827c2c6bb0f65b22d"
+content-hash = "b371521308f5fc40366c126293c311a98aaed51932b0a5f528b563b32c10eca4"

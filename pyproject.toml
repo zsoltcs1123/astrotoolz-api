@@ -12,7 +12,7 @@ uvicorn = "^0.27.0.post1"
 pyyaml = "^6.0.1"
 colorlog = "^6.8.2"
 pyhumps = "^3.8.0"
-astrotoolz = {path = "C:/Users/Zsolt/data/dev/astrotoolz"}
+astrotoolz = {git = "https://github.com/zsoltcs1123/astrotools-python.git"}
 
 
 [build-system]
