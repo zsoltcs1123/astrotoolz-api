@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from astrotoolz_api.routers import horoscope, timeline
+from astrotoolz_api.routers import dasa, horoscope, timeline
 
 app = FastAPI()
 
@@ -23,3 +23,4 @@ app.add_middleware(
 
 app.include_router(timeline.router)
 app.include_router(horoscope.router)
+app.include_router(dasa.router)

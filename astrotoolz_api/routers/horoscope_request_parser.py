@@ -10,7 +10,9 @@ from astrotoolz_api.model.horoscope_request import HoroscopeRequest
 from astrotoolz_api.model.timeline_request import AspectRequest
 
 
-def to_horoscope_factory_config(request: HoroscopeRequest) -> HoroscopeFactoryConfig:
+def parse_to_horoscope_factory_config(
+    request: HoroscopeRequest,
+) -> HoroscopeFactoryConfig:
     coord_system = CoordinateSystem.from_string(request.coordinate_system)
     node_calc = NodeCalc.from_string(request.node_calc) if request.node_calc else None
     return HoroscopeFactoryConfig(
@@ -20,7 +22,7 @@ def to_horoscope_factory_config(request: HoroscopeRequest) -> HoroscopeFactoryCo
     )
 
 
-def to_horoscope_config(request: HoroscopeRequest) -> HoroscopeConfig:
+def parse_to_horoscope_config(request: HoroscopeRequest) -> HoroscopeConfig:
     aspects = _parse_aspects(request.aspects) if request.aspects else []
     zodiac = Zodiac.from_string(request.zodiac) if request.zodiac else None
     house_system = (

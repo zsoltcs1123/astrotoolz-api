@@ -9,7 +9,7 @@ from astrotoolz_api.model.timeline_request import AspectRequest, TimelineRequest
 from astrotoolz_api.utils.date_utls import parse_utc_date
 
 
-def to_timeline_config(request: TimelineRequest) -> TimelineConfig:
+def parse_to_timeline_config(request: TimelineRequest) -> TimelineConfig:
     coord_system = _parse_coordinate_system(request.coordinate_system)
     start_date = parse_utc_date(request.start_date)
     end_date = parse_utc_date(request.end_date)

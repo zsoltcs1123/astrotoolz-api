@@ -6,7 +6,7 @@ from astrotoolz.timeline.timeline_factory_builder import build_timeline_factory
 from fastapi import APIRouter, HTTPException, Response
 
 from astrotoolz_api.model.timeline_request import TimelineRequest
-from astrotoolz_api.routers.timeline_utils import to_timeline_config
+from astrotoolz_api.routers.timeline_request_parser import parse_to_timeline_config
 from astrotoolz_api.utils.custom_json_encoder import CustomJSONEncoder
 
 router = APIRouter(prefix="/timeline", tags=["timeline"])
@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.DEBUG)
 @router.post("/")
 async def create_timeline(request: TimelineRequest):
     try:
-        cfg = to_timeline_config(request)
+        cfg = parse_to_timeline_config(request)
 
         timeline_factory = build_timeline_factory(cfg)
         timeline = timeline_factory.create_timeline(cfg)

@@ -8,9 +8,9 @@ from astrotoolz.horoscope.factory.horoscope_factory_builder import (
 from fastapi import APIRouter, Response
 
 from astrotoolz_api.model.horoscope_request import HoroscopeRequest
-from astrotoolz_api.routers.horoscope_utils import (
-    to_horoscope_config,
-    to_horoscope_factory_config,
+from astrotoolz_api.routers.horoscope_request_parser import (
+    parse_to_horoscope_config,
+    parse_to_horoscope_factory_config,
 )
 from astrotoolz_api.utils.custom_json_encoder import CustomJSONEncoder
 from astrotoolz_api.utils.date_utls import parse_utc_date
@@ -23,10 +23,10 @@ logging.basicConfig(level=logging.DEBUG)
 @router.post("/")
 async def create_horoscope(request: HoroscopeRequest):
     try:
-        factory_cfg = to_horoscope_factory_config(request)
+        factory_cfg = parse_to_horoscope_factory_config(request)
         horoscope_factory = build_horoscope_factory(factory_cfg)
 
-        cfg = to_horoscope_config(request)
+        cfg = parse_to_horoscope_config(request)
         date = parse_utc_date(request.date)
         horoscope = horoscope_factory.create_horoscope(date, cfg)
 
