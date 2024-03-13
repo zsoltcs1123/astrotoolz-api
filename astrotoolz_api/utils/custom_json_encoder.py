@@ -15,6 +15,7 @@ from astrotoolz.core.zodiac.division import Division
 from astrotoolz.core.zodiac.mapped_position import MappedPosition
 from astrotoolz.core.zodiac.tropical_attributes import TropicalAttributes
 from astrotoolz.core.zodiac.vedic_attributes import VedicAttributes
+from astrotoolz.dasa.dasa import Dasa
 from astrotoolz.horoscope.horoscope import Horoscope
 from astrotoolz.timeline.timeline import Timeline
 
@@ -93,6 +94,15 @@ class CustomJSONEncoder(json.JSONEncoder):
                 "nakshatra": obj.nakshatra.name,
                 "nakshatra_lord": obj.nakshatra_ruler,
                 "house": obj.house,
+            }
+
+        if isinstance(obj, Dasa):
+            return {
+                "level": obj.level.name,
+                "planet": obj.planet,
+                "startDate": obj.start_date.isoformat(),
+                "endDate": obj.end_date.isoformat(),
+                "subDasas": obj.sub_dasas,
             }
 
         if isinstance(obj, (datetime, date)):  # Updated line

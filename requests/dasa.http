@@ -6,9 +6,9 @@ curl -X POST "http://127.0.0.1:8000/dasa" \
     }'
 
 ###
-curl -X POST "http://localhost:8001/dasa" \
+curl -X POST "http://localhost:8002/dasa" \
      -H "Content-Type: application/json" \
      -d '{
       "birth_date": "1992-07-21T01:20:00",
-      "dasa_level": "Pratyantar"
+      "dasa_level": "Bhukti"
     }'

@@ -33,10 +33,10 @@ def create_dasa(request: DasaRequest):
 
         dasas = generate_dasas(moon_mapped, dasa_level)
 
-        horoscope_json = json.dumps(dasas, cls=CustomJSONEncoder)
-        camelcase_json = humps.camelize(horoscope_json)
+        dasa_json = json.dumps(dasas, cls=CustomJSONEncoder)
+        # camelcase_json = humps.camelize(dasa_json)
 
-        return Response(content=camelcase_json, media_type="application/json")
+        return Response(content=dasa_json, media_type="application/json")
     except Exception as e:
         logging.error(e)
         return Response(content="Internal Server Error", status_code=500)
